@@ -4,32 +4,34 @@ public abstract class Vehicle {
     private String colour, name, serialNumber;
     private int model, price, direction;
     private double speed;
-    protected Scanner input;
+
+    protected Scanner input = new Scanner(System.in);
 
     public Vehicle() {
-        setColour("Red");
-        setName("Lada");
-        setSerialNumber("12-345");
-        setModel(1980);
-        setPrice(2000);
-        setDirection(0);
+
     }
 
-    public Vehicle(String colour, String name, String serialNumber, int model, int price, int direction) {
-        setColour(colour);
+    public Vehicle(String name, String colour, int price, int model, String serialNumber, int direction) {
         setName(name);
-        setSerialNumber(serialNumber);
-        setModel(model);
+        setColour(colour);
         setPrice(price);
+        setModel(model);
+        setSerialNumber(serialNumber);
         setDirection(direction);
     }
 
-    public void setAllFields(Scanner input) {
-        setColour(input.next());
-        setName(input.next());
-        setSerialNumber(input.next());
-        setModel(input.nextInt());
+    public void setAllFields() {
+        System.out.print("Name: ");
+        setName(input.nextLine());
+        System.out.print("Colour: ");
+        setColour(input.nextLine());
+        System.out.print("Price: ");
         setPrice(input.nextInt());
+        System.out.print("Model: ");
+        setModel(input.nextInt());
+        input.nextLine(); // "flushes" line before nextline
+        System.out.print("Serial#: ");
+        setSerialNumber(input.nextLine());
     }
 
     public abstract void turnLeft(int degrees);
@@ -96,5 +98,4 @@ public abstract class Vehicle {
         // Name, Colour, Serial Number, Model, Price, Direction, Speed
         return String.format("Name: %s, Colour: %s, Serial#: %s, Model: %d, Price: %d, Direction: %d, Speed: %.2f", getName(), getColour(), getSerialNumber(), getModel(),getPrice(), getDirection(), getSpeed());
     }
-
 }
