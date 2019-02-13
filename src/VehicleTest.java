@@ -59,7 +59,8 @@ public class VehicleTest {
         case 3:
         //vis info om gitt kjøretøy
         System.out.print("Name of vehicle: ");
-          String search =  scan.next();
+          scan.nextLine(); // flush scanner
+          String search =  scan.nextLine();
           for(Vehicle loop : arr) {
             if(loop.getName().toLowerCase().contains(search.toLowerCase())) {
               System.out.println(loop);
@@ -78,7 +79,8 @@ public class VehicleTest {
       case 5:
         // Finn kjøretøy med gitt navn, sett ny retning
         System.out.print("Name of vehicle: ");
-        String search2 =  scan.next();
+        scan.nextLine(); // flush scanner
+        String search2 =  scan.nextLine();
 
         for(Vehicle loop : arr) {
           if(loop.getName().toLowerCase().contains(search2.toLowerCase())) {
