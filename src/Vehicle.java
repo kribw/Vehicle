@@ -28,6 +28,7 @@ public abstract class Vehicle {
         setPrice(input.nextInt());
         System.out.print("Model: ");
         setModel(input.nextInt());
+        input.nextLine(); // "flushes" line before nextline
         System.out.print("Serial#: ");
         setSerialNumber(input.nextLine());
     }

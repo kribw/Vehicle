@@ -1,3 +1,5 @@
+import static java.lang.Math.abs;
+
 public class Bicycle extends Vehicle {
     private int gears;
 
@@ -25,6 +27,7 @@ public class Bicycle extends Vehicle {
         setPrice(input.nextInt());
         System.out.print("Model: ");
         setModel(input.nextInt());
+        input.nextLine(); // "flushes" line before nextline
         System.out.print("Serial#: ");
         setSerialNumber(input.nextLine());
         System.out.print("Gear: ");
@@ -33,17 +36,9 @@ public class Bicycle extends Vehicle {
         setSpeed(input.nextDouble());
     }
 
-    public int getGears() {
-        return gears;
-    }
-
-    public void setGears(int gears) {
-        this.gears = gears;
-    }
-
     public void turnRight(int degrees) {
         if(degrees > 0 && degrees < 360) {
-            setDirection((getDirection() + degrees) % 360);
+            setDirection((getDirection() + degrees) % 350);
         }
     }
 
@@ -55,6 +50,14 @@ public class Bicycle extends Vehicle {
                 setDirection(getDirection() - degrees);
             }
         }
+    }
+
+    public int getGears() {
+        return gears;
+    }
+
+    public void setGears(int gears) {
+        this.gears = gears;
     }
 
     @Override

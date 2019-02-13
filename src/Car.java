@@ -26,10 +26,17 @@ public class Car extends Vehicle {
         setPrice(input.nextInt());
         System.out.print("Model: ");
         setModel(input.nextInt());
+        input.nextLine(); // "flushes" line before nextline
         System.out.print("Serial#: ");
         setSerialNumber(input.nextLine());
         System.out.print("Power: ");
         setPower(input.nextInt());
+    }
+
+    public void turnRight(int degrees) {
+        if(degrees > 0 && degrees < 360) {
+            setDirection((getDirection() + degrees) % 360);
+        }
     }
 
     public void turnLeft(int degrees) {
@@ -39,12 +46,6 @@ public class Car extends Vehicle {
             } else {
                 setDirection(getDirection() - degrees);
             }
-        }
-    }
-
-    public void turnRight(int degrees) {
-        if(degrees > 0 && degrees < 360) {
-            setDirection((getDirection() + degrees) % 360);
         }
     }
 
