@@ -17,6 +17,7 @@ public class Car extends Vehicle {
 
     @Override
     public void setAllFields() {
+        // Name, colour, price, model, serialnumber, power
         System.out.print("Name: ");
         setName(input.nextLine());
         System.out.print("Colour: ");
@@ -27,14 +28,14 @@ public class Car extends Vehicle {
         setModel(input.nextInt());
         System.out.print("Serial#: ");
         setSerialNumber(input.next());
-        System.out.println("Power: ");
+        System.out.print("Power: ");
         setPower(input.nextInt());
     }
 
     public void turnLeft(int degrees) {
         if(degrees > 0 && degrees < 360) {
             if(getDirection() - degrees < 0) {
-
+                setDirection(getDirection() - degrees + 360);
             } else {
                 setDirection(getDirection() - degrees);
             }

@@ -5,20 +5,20 @@ public class Bicycle extends Vehicle {
 
     }
 
-    public Bicycle(String name, String colour, int price, int model, String serialNumber, int direction, int gears) {
+    public Bicycle(String name, String colour, int price, int model, String serialNumber, int gears, double speed) {
         setName(name);
         setColour(colour);
         setPrice(price);
         setModel(model);
         setSerialNumber(serialNumber);
-        setDirection(direction);
         setGears(gears);
+        setSpeed(speed);
     }
 
     @Override
     public void setAllFields() {
         System.out.print("Name: ");
-        setName(input.next());
+        setName(input.nextLine());
         System.out.print("Colour: ");
         setColour(input.next());
         System.out.print("Price: ");
@@ -27,8 +27,10 @@ public class Bicycle extends Vehicle {
         setModel(input.nextInt());
         System.out.print("Serial#: ");
         setSerialNumber(input.next());
-        System.out.println("Gear: ");
+        System.out.print("Gear: ");
         setGears(input.nextInt());
+        System.out.print("Speed: ");
+        setSpeed(input.nextDouble());
     }
 
     public int getGears() {
@@ -40,16 +42,24 @@ public class Bicycle extends Vehicle {
     }
 
     public void turnRight(int degrees) {
-        System.out.println(getDirection());
+        if(degrees > 0 && degrees < 360) {
+            setDirection((getDirection() + degrees) % 360);
+        }
     }
 
     public void turnLeft(int degrees) {
-        System.out.println(getDirection());
+        if(degrees > 0 && degrees < 360) {
+            if(getDirection() - degrees < 0) {
+                setDirection(getDirection() - degrees + 360);
+            } else {
+                setDirection(getDirection() - degrees);
+            }
+        }
     }
 
     @Override
     public String toString() {
-        // Name, Colour, Serial Number, Model, Price, Direction, Speed, Gears
-        return String.format("Name: %s, Colour: %s, Serial#: %s, Model: %d, Price: %d, Direction: %d, Speed: %.2f, Gear: %d", getName(), getColour(), getSerialNumber(), getModel(),getPrice(), getDirection(), getSpeed(), getGears());
+        // Name, Colour, Serial Number, Model, Price, Direction, Gears, Speed
+        return String.format("Name: %s, Colour: %s, Serial#: %s, Model: %d, Price: %d, Direction: %d, Gear: %d, Speed: %.2f", getName(), getColour(), getSerialNumber(), getModel(),getPrice(), getDirection(), getGears(), getSpeed());
     }
 }
