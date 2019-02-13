@@ -1,13 +1,15 @@
-import static java.lang.Math.abs;
+import java.util.GregorianCalendar;
 
 public class Bicycle extends Vehicle {
     private int gears;
+    private GregorianCalendar productionDate;
 
     public Bicycle() {
-
+        setProductionDate(new GregorianCalendar());
     }
 
     public Bicycle(String name, String colour, int price, int model, String serialNumber, int gears, double speed) {
+        this();
         setName(name);
         setColour(colour);
         setPrice(price);
@@ -56,13 +58,21 @@ public class Bicycle extends Vehicle {
         return gears;
     }
 
+    public GregorianCalendar getProductionDate() {
+        return productionDate;
+    }
+
     public void setGears(int gears) {
         this.gears = gears;
     }
 
+    public void setProductionDate(GregorianCalendar date) {
+        this.productionDate = date;
+    }
+
     @Override
     public String toString() {
-        // Name, Colour, Serial Number, Model, Price, Direction, Gears, Speed
-        return String.format("Name: %s, Colour: %s, Serial#: %s, Model: %d, Price: %d, Direction: %d, Gear: %d, Speed: %.2f", getName(), getColour(), getSerialNumber(), getModel(),getPrice(), getDirection(), getGears(), getSpeed());
+        // Name, Colour, Serial Number, Model, Price, Direction, Gears, Speed, Production date
+        return String.format("Name: %s, Colour: %s, Serial#: %s, Model: %d, Price: %d, Direction: %d, Gear: %d, Speed: %.2f, Production date: %tF", getName(), getColour(), getSerialNumber(), getModel(),getPrice(), getDirection(), getGears(), getSpeed(), getProductionDate());
     }
 }

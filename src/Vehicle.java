@@ -4,6 +4,7 @@ public abstract class Vehicle {
     private String colour, name, serialNumber;
     private int model, price, direction;
     private double speed;
+
     protected Scanner input = new Scanner(System.in);
 
     public Vehicle() {
