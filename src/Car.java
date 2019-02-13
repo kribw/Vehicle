@@ -27,7 +27,7 @@ public class Car extends Vehicle {
         System.out.print("Model: ");
         setModel(input.nextInt());
         System.out.print("Serial#: ");
-        setSerialNumber(input.next());
+        setSerialNumber(input.nextLine());
         System.out.print("Power: ");
         setPower(input.nextInt());
     }

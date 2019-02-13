@@ -20,13 +20,13 @@ public class Bicycle extends Vehicle {
         System.out.print("Name: ");
         setName(input.nextLine());
         System.out.print("Colour: ");
-        setColour(input.next());
+        setColour(input.nextLine());
         System.out.print("Price: ");
         setPrice(input.nextInt());
         System.out.print("Model: ");
         setModel(input.nextInt());
         System.out.print("Serial#: ");
-        setSerialNumber(input.next());
+        setSerialNumber(input.nextLine());
         System.out.print("Gear: ");
         setGears(input.nextInt());
         System.out.print("Speed: ");
