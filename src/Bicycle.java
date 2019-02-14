@@ -70,6 +70,28 @@ public class Bicycle extends Vehicle {
         this.productionDate = date;
     }
 
+    public void accelerate(int speedFactor) {
+        double tempspeed = 0;
+
+        if(getSpeed() == 0) {
+            tempspeed  = (speedFactor * 0.3);
+        } else {
+            tempspeed = (getSpeed() * 0.5 * speedFactor);
+        }
+
+        if (tempspeed > MAX_SPEED_BIKE) {
+            setSpeed(MAX_SPEED_BIKE);
+        } else {
+            setSpeed(tempspeed);
+        }
+        System.out.println("Vehicle accelerated to: " + getSpeed() + " km/h.");
+    }
+
+    public void breaks(int speedFactor) {
+        setSpeed(getSpeed()/(speedFactor*0.5));
+        System.out.println("Vehicle slowed down to: " + getSpeed() + " km/h.");
+    }
+
     @Override
     public String toString() {
         // Name, Colour, Serial Number, Model, Price, Direction, Gears, Speed, Production date
