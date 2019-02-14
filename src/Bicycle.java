@@ -1,11 +1,11 @@
-import java.util.GregorianCalendar;
+import java.util.Calendar;
 
 public class Bicycle extends Vehicle {
     private int gears;
-    private GregorianCalendar productionDate;
+    private Calendar productionDate;
 
     public Bicycle() {
-        setProductionDate(new GregorianCalendar());
+        setProductionDate(Calendar.getInstance());
     }
 
     public Bicycle(String name, String colour, int price, int model, String serialNumber, int gears, double speed) {
@@ -58,7 +58,7 @@ public class Bicycle extends Vehicle {
         return gears;
     }
 
-    public GregorianCalendar getProductionDate() {
+    public Calendar getProductionDate() {
         return productionDate;
     }
 
@@ -66,7 +66,7 @@ public class Bicycle extends Vehicle {
         this.gears = gears;
     }
 
-    public void setProductionDate(GregorianCalendar date) {
+    public void setProductionDate(Calendar date) {
         this.productionDate = date;
     }
 
