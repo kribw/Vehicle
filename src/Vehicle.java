@@ -104,7 +104,7 @@ public abstract class Vehicle implements Cloneable, Comparable<Vehicle> {
         this.buyingDate = buyingDate;
     }
 
-    public int compareTo(Vehicle other) {
+        public int compareTo(Vehicle other) {
         if(this.getPrice() > other.getPrice()) {
             return 1;
         } else if(this.getPrice() < other.getPrice()) {
