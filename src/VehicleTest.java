@@ -37,7 +37,8 @@ public class VehicleTest {
       System.out.println("4..............Show data about all vehicles");
       System.out.println("5.......Change direction of a given vehicle");
       System.out.println("6.........................Test clone method");
-      System.out.println("7..............................Exit program");
+      System.out.println("7..................Test driveable interface");
+      System.out.println("8..............................Exit program");
       System.out.print(".............................Your choice? ");
       int choice = scan.nextInt();
       System.out.println();
@@ -120,6 +121,25 @@ public class VehicleTest {
           break;
 
         case 7:
+          //test driveable interface
+          System.out.println("Car:");
+          Vehicle incredibleCar = new Car("Crazy car", "Dashing", 9000, 420, "HO-HO", 0, 200);
+          incredibleCar.accelerate(50);
+          incredibleCar.accelerate(300);
+          incredibleCar.breaks(40);
+          incredibleCar.stop();
+
+          System.out.println();
+
+          Vehicle amazingBike = new Bicycle("Mega-fast-and-nutty bike", "All kinds", 500, 3, "W-T-F", 10, 0);
+          System.out.println("Bicycle:");
+          amazingBike.accelerate(20);
+          amazingBike.accelerate(140);
+          amazingBike.breaks(40);
+          amazingBike.stop();
+          break;
+
+        case 8:
           scan.close();
           System.exit(0);
 
