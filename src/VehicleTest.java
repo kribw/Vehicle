@@ -16,7 +16,7 @@ public class VehicleTest {
       System.exit(1);
     } catch(CloneNotSupportedException e) {
       System.out.println("CloneNotSupportedException");
-      System.exit(1);
+      System.exit(2);
     }
   }
 
@@ -62,6 +62,7 @@ public class VehicleTest {
           System.out.print("Name of vehicle: ");
           scan.nextLine(); // flush scanner
           String search =  scan.nextLine();
+
           for(Vehicle loop : arr) {
             if(loop.getName().toLowerCase().contains(search.toLowerCase())) {
               System.out.println(loop);
@@ -99,17 +100,21 @@ public class VehicleTest {
           break;
 
         case 6:
+          //clone and change date
           Vehicle testCar = new Car("Test car", "Blue", 52000, 2011, "123-456", 0, 200);
           Vehicle clonedCar = (Vehicle)testCar.clone();
           clonedCar.setBuyingDate((Calendar)testCar.getBuyingDate().clone());
+
           Calendar newDate = Calendar.getInstance();
           newDate.set(1990,3,22);
           testCar.setBuyingDate(newDate);
+
           if(testCar.getBuyingDate() != clonedCar.getBuyingDate()) {
             System.out.println("Date objects are separate, deep copy successful.");
           } else {
             System.out.println("Date objects are not separate. Deep copy may have failed.");
           }
+
           System.out.printf("%tF\n", testCar.getBuyingDate());
           System.out.printf("%tF\n", clonedCar.getBuyingDate());
           break;

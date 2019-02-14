@@ -14,6 +14,7 @@ public abstract class Vehicle implements Cloneable, Comparable<Vehicle> {
     }
 
     public Vehicle(String name, String colour, int price, int model, String serialNumber, int direction) {
+        this();
         setName(name);
         setColour(colour);
         setPrice(price);
@@ -103,6 +104,7 @@ public abstract class Vehicle implements Cloneable, Comparable<Vehicle> {
         this.buyingDate = buyingDate;
     }
 
+    @Override
     public int compareTo(Vehicle other) {
         if(this.getPrice() > other.getPrice()) {
             return 1;
@@ -113,6 +115,7 @@ public abstract class Vehicle implements Cloneable, Comparable<Vehicle> {
         }
     }
 
+    @Override
     public Object clone() throws CloneNotSupportedException {
         return super.clone();
     }
