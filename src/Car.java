@@ -72,6 +72,8 @@ public class Car extends Vehicle {
     @Override
     public String toString() {
         // Name, Colour, Serial Number, Model, Price, Direction, Speed, Power, Production date
-        return String.format("Name: %s, Colour: %s, Serial#: %s, Model: %d, Price: %d, Direction: %d, Speed: %.2f, Power: %d, Production date: %tF", getName(), getColour(), getSerialNumber(), getModel(),getPrice(), getDirection(), getSpeed(), getPower(), getProductionDate());
+        //return String.format("Name: %s, Colour: %s, Serial#: %s, Model: %d, Price: %d, Direction: %d, Speed: %.2f, Power: %d, Production date: %tF", getName(), getColour(), getSerialNumber(), getModel(),getPrice(), getDirection(), getSpeed(), getPower(), getProductionDate());
+        return String.format("%s, Power: %d, Production date: %tF", super.toString(), getPower(), getProductionDate());
+
     }
 }
