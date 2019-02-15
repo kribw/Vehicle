@@ -39,19 +39,11 @@ public class Bicycle extends Vehicle {
     }
 
     public void turnRight(int degrees) {
-        if(degrees > 0 && degrees < 360) {
-            setDirection((getDirection() + degrees) % 350);
-        }
+        System.out.println("Bicycle has turned " + degrees + " degrees to the right.");
     }
 
     public void turnLeft(int degrees) {
-        if(degrees > 0 && degrees < 360) {
-            if(getDirection() - degrees < 0) {
-                setDirection(getDirection() - degrees + 360);
-            } else {
-                setDirection(getDirection() - degrees);
-            }
-        }
+        System.out.println("Bicycle has turned " + degrees + " degrees to the left.");
     }
 
     public int getGears() {
@@ -95,6 +87,6 @@ public class Bicycle extends Vehicle {
     @Override
     public String toString() {
         // Name, Colour, Serial Number, Model, Price, Direction, Gears, Speed, Production date
-        return String.format("Name: %s, Colour: %s, Serial#: %s, Model: %d, Price: %d, Direction: %d, Gear: %d, Speed: %.2f, Production date: %tF", getName(), getColour(), getSerialNumber(), getModel(),getPrice(), getDirection(), getGears(), getSpeed(), getProductionDate());
+        return String.format("%s, Gear: %d, Production date: %tF", super.toString(), getGears(), getProductionDate());
     }
 }
