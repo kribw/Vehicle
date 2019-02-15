@@ -122,6 +122,7 @@ public class VehicleTest {
 
           System.out.printf("%tF\n", testCar.getBuyingDate());
           System.out.printf("%tF\n", clonedCar.getBuyingDate());
+          System.out.println();
           break;
 
         case 7:
@@ -132,7 +133,6 @@ public class VehicleTest {
           incredibleCar.accelerate(300);
           incredibleCar.breaks(40);
           incredibleCar.stop();
-
           System.out.println();
 
           Vehicle amazingBike = new Bicycle("Mega-fast-and-nutty bike", "All kinds", 500, 3, "W-T-F", 10, 0);
@@ -141,6 +141,7 @@ public class VehicleTest {
           amazingBike.accelerate(140);
           amazingBike.breaks(40);
           amazingBike.stop();
+          System.out.println();
           break;
 
         case 8:
