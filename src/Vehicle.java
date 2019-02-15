@@ -1,7 +1,3 @@
-import jdk.jfr.StackTrace;
-
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Calendar;
@@ -9,15 +5,13 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public abstract class Vehicle implements Cloneable, Driveable, Fileable, Comparable<Vehicle> {
+
     private String colour, name, serialNumber;
     private int model, price, direction;
     private double speed;
     private Calendar buyingDate;
-    //final double MAX_SPEED_CAR = ;
 
-    protected Scanner input = new Scanner(System.in);
-
-    File file = new File("vehicles.txt");
+    protected Scanner input = new Scanner(System.in).useLocale(Locale.US);
 
     public Vehicle() {
         setBuyingDate(Calendar.getInstance());
@@ -48,6 +42,7 @@ public abstract class Vehicle implements Cloneable, Driveable, Fileable, Compara
     }
 
     public abstract void turnLeft(int degrees);
+
     public abstract void turnRight(int degrees);
 
     public String getColour() {
@@ -120,38 +115,39 @@ public abstract class Vehicle implements Cloneable, Driveable, Fileable, Compara
     }
 
     public int compareTo(Vehicle other) {
-        if(this.getPrice() > other.getPrice()) {
+        if (this.getPrice() > other.getPrice()) {
             return 1;
-        } else if(this.getPrice() < other.getPrice()) {
+        }
+        else if (this.getPrice() < other.getPrice()) {
             return -1;
-        } else {
+        }
+        else {
             return 0;
         }
     }
 
     public void writeData(PrintWriter out) throws IOException {
-
+        out.write(getClass().getName());
+        out.write(", ");
+        out.write(toString());
+        System.out.println("Vehicle written to file: " + toString());
     }
 
-    public void readData(Scanner in) throws IOException{
-        in.useDelimiter(",");
-        /*try {
-            String vehClass = in.next();                    // leser klassenavnet fra filen
-            Class veh1 = Class.forName(vehClass);           // oppretter Class objekt for angitt klassenavn (String)
-            Vehicle veh = (Vehicle) veh1.newInstance();      // oppretter ny instans av Vehicle
-        } catch (FileNotFoundException e) {
-            System.out.println("File ");
-            System.exit(3);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-            System.exit(4);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            System.exit(5);
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-            System.exit(6);
-        }*/
+    public void readData(Scanner in) {
+        String name = in.next();
+        setName(name.substring(name.lastIndexOf(":") + 2));
+        String colour = in.next();
+        setColour(colour.substring(colour.lastIndexOf(":") + 2));
+        String serial = in.next();
+        setSerialNumber(serial.substring(serial.lastIndexOf(":") + 2));
+        String model = in.next();
+        setModel(Integer.parseInt(model.substring(model.lastIndexOf(":") + 2)));
+        String price = in.next();
+        setPrice(Integer.parseInt(price.substring(price.lastIndexOf(":") + 2)));
+        String direction = in.next();
+        setDirection(Integer.parseInt(direction.substring(direction.lastIndexOf(":") + 2)));
+        String speed = in.next();
+        setSpeed(Double.valueOf(speed.substring(speed.lastIndexOf(":") + 2)));
     }
 
 
@@ -163,6 +159,6 @@ public abstract class Vehicle implements Cloneable, Driveable, Fileable, Compara
     @Override
     public String toString() {
         // Name, Colour, Serial Number, Model, Price, Direction, Speed
-        return String.format("Name: %s, Colour: %s, Serial#: %s, Model: %d, Price: %d, Direction: %d, Speed: %.2f", getName(), getColour(), getSerialNumber(), getModel(),getPrice(), getDirection(), getSpeed());
+        return String.format("Name: %s, Colour: %s, Serial#: %s, Model: %d, Price: %d, Direction: %d, Speed: %.2f", getName(), getColour(), getSerialNumber(), getModel(), getPrice(), getDirection(), getSpeed());
     }
 }

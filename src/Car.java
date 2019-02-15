@@ -1,4 +1,5 @@
 import java.util.Calendar;
+import java.util.Scanner;
 
 public class Car extends Vehicle {
     private int power;
@@ -22,19 +23,16 @@ public class Car extends Vehicle {
     @Override
     public void setAllFields() {
         // Name, colour, price, model, serialnumber, power
-        System.out.print("Name: ");
-        setName(input.nextLine());
-        System.out.print("Colour: ");
-        setColour(input.nextLine());
-        System.out.print("Price: ");
-        setPrice(input.nextInt());
-        System.out.print("Model: ");
-        setModel(input.nextInt());
-        input.nextLine(); // "flushes" line before nextline
-        System.out.print("Serial#: ");
-        setSerialNumber(input.nextLine());
+        super.setAllFields();
         System.out.print("Power: ");
         setPower(input.nextInt());
+    }
+
+    @Override
+    public void readData(Scanner in) {
+        super.readData(in);
+        String power = in.next();
+        setPower(Integer.parseInt(power.substring(power.lastIndexOf(":") + 2)));
     }
 
     public void turnRight(int degrees) {
@@ -94,8 +92,6 @@ public class Car extends Vehicle {
     @Override
     public String toString() {
         // Name, Colour, Serial Number, Model, Price, Direction, Speed, Power, Production date
-        //return String.format("Name: %s, Colour: %s, Serial#: %s, Model: %d, Price: %d, Direction: %d, Speed: %.2f, Power: %d, Production date: %tF", getName(), getColour(), getSerialNumber(), getModel(),getPrice(), getDirection(), getSpeed(), getPower(), getProductionDate());
         return String.format("%s, Power: %d, Production date: %tF", super.toString(), getPower(), getProductionDate());
-
     }
 }

@@ -1,4 +1,5 @@
 import java.util.Calendar;
+import java.util.Scanner;
 
 public class Bicycle extends Vehicle {
     private int gears;
@@ -21,21 +22,18 @@ public class Bicycle extends Vehicle {
 
     @Override
     public void setAllFields() {
-        System.out.print("Name: ");
-        setName(input.nextLine());
-        System.out.print("Colour: ");
-        setColour(input.nextLine());
-        System.out.print("Price: ");
-        setPrice(input.nextInt());
-        System.out.print("Model: ");
-        setModel(input.nextInt());
-        input.nextLine(); // "flushes" line before nextline
-        System.out.print("Serial#: ");
-        setSerialNumber(input.nextLine());
+        super.setAllFields();
         System.out.print("Gear: ");
         setGears(input.nextInt());
         System.out.print("Speed: ");
         setSpeed(input.nextDouble());
+    }
+
+    @Override
+    public void readData(Scanner in) {
+        super.readData(in);
+        String gear = in.next();
+        setGears(Integer.parseInt(gear.substring(gear.lastIndexOf(":") + 2)));
     }
 
     public void turnRight(int degrees) {
