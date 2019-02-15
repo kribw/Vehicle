@@ -1,11 +1,11 @@
-import java.util.GregorianCalendar;
+import java.util.Calendar;
 
 public class Bicycle extends Vehicle {
     private int gears;
-    private GregorianCalendar productionDate;
+    private Calendar productionDate;
 
     public Bicycle() {
-        setProductionDate(new GregorianCalendar());
+        setProductionDate(Calendar.getInstance());
     }
 
     public Bicycle(String name, String colour, int price, int model, String serialNumber, int gears, double speed) {
@@ -39,26 +39,18 @@ public class Bicycle extends Vehicle {
     }
 
     public void turnRight(int degrees) {
-        if(degrees > 0 && degrees < 360) {
-            setDirection((getDirection() + degrees) % 350);
-        }
+        System.out.println("Bicycle has turned " + degrees + " degrees to the right.");
     }
 
     public void turnLeft(int degrees) {
-        if(degrees > 0 && degrees < 360) {
-            if(getDirection() - degrees < 0) {
-                setDirection(getDirection() - degrees + 360);
-            } else {
-                setDirection(getDirection() - degrees);
-            }
-        }
+        System.out.println("Bicycle has turned " + degrees + " degrees to the left.");
     }
 
     public int getGears() {
         return gears;
     }
 
-    public GregorianCalendar getProductionDate() {
+    public Calendar getProductionDate() {
         return productionDate;
     }
 
@@ -66,13 +58,13 @@ public class Bicycle extends Vehicle {
         this.gears = gears;
     }
 
-    public void setProductionDate(GregorianCalendar date) {
+    public void setProductionDate(Calendar date) {
         this.productionDate = date;
     }
 
     @Override
     public String toString() {
         // Name, Colour, Serial Number, Model, Price, Direction, Gears, Speed, Production date
-        return String.format("Name: %s, Colour: %s, Serial#: %s, Model: %d, Price: %d, Direction: %d, Gear: %d, Speed: %.2f, Production date: %tF", getName(), getColour(), getSerialNumber(), getModel(),getPrice(), getDirection(), getGears(), getSpeed(), getProductionDate());
+        return String.format("%s, Gear: %d, Production date: %tF", super.toString(), getGears(), getProductionDate());
     }
 }

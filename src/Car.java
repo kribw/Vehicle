@@ -1,11 +1,11 @@
-import java.util.GregorianCalendar;
+import java.util.Calendar;
 
 public class Car extends Vehicle {
     private int power;
-    private GregorianCalendar productionDate;
+    private Calendar productionDate;
 
     public Car() {
-        setProductionDate(new GregorianCalendar());
+        setProductionDate(Calendar.getInstance());
     }
 
     public Car(String name, String colour, int price, int model, String serialNumber, int direction, int power) {
@@ -57,7 +57,7 @@ public class Car extends Vehicle {
         return power;
     }
 
-    public GregorianCalendar getProductionDate() {
+    public Calendar getProductionDate() {
         return productionDate;
     }
 
@@ -65,13 +65,15 @@ public class Car extends Vehicle {
         this.power = power;
     }
 
-    public void setProductionDate(GregorianCalendar date) {
+    public void setProductionDate(Calendar date) {
         this.productionDate = date;
     }
 
     @Override
     public String toString() {
         // Name, Colour, Serial Number, Model, Price, Direction, Speed, Power, Production date
-        return String.format("Name: %s, Colour: %s, Serial#: %s, Model: %d, Price: %d, Direction: %d, Speed: %.2f, Power: %d, Production date: %tF", getName(), getColour(), getSerialNumber(), getModel(),getPrice(), getDirection(), getSpeed(), getPower(), getProductionDate());
+        //return String.format("Name: %s, Colour: %s, Serial#: %s, Model: %d, Price: %d, Direction: %d, Speed: %.2f, Power: %d, Production date: %tF", getName(), getColour(), getSerialNumber(), getModel(),getPrice(), getDirection(), getSpeed(), getPower(), getProductionDate());
+        return String.format("%s, Power: %d, Production date: %tF", super.toString(), getPower(), getProductionDate());
+
     }
 }

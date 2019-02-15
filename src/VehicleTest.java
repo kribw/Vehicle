@@ -54,7 +54,8 @@ public class VehicleTest {
         vehicle = new Bicycle();
         vehicle.setAllFields();
         arr.add(vehicle);
-        break;
+        System.out.println();
+          break;
 
         case 3:
         //vis info om gitt kjøretøy
@@ -66,7 +67,8 @@ public class VehicleTest {
               System.out.println(loop);
             }
           }
-        break;
+          System.out.println();
+          break;
 
       case 4:
         //vis info om alle kjøretøy
@@ -95,6 +97,7 @@ public class VehicleTest {
             }
           }
         }
+        System.out.println();
         break;
 
       case 6:
