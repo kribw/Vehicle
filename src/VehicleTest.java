@@ -43,6 +43,7 @@ public class VehicleTest {
       int choice = scan.nextInt();
       System.out.println();
 
+
       switch (choice) {
         case 1:
           //legg til en ny bil

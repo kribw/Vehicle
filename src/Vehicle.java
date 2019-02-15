@@ -1,3 +1,5 @@
+import jdk.jfr.StackTrace;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -128,16 +130,28 @@ public abstract class Vehicle implements Cloneable, Driveable, Fileable, Compara
     }
 
     public void writeData(PrintWriter out) throws IOException {
-        // .useLocale(Locale.US)
-        Scanner in = new Scanner(file);
-        in.useDelimiter(",");
-        String vehClass = in.next();                    // leser klassenavnet fra filen
-        //Class veh1 = Class.forName(vehClass);           // oppretter Class objekt for angitt klassenavn (String)
-        //Vehicle veh = (Vehicle)veh1.newInstance();      // oppretter ny instans av Vehicle
+
     }
 
     public void readData(Scanner in) throws IOException{
-
+        in.useDelimiter(",");
+        /*try {
+            String vehClass = in.next();                    // leser klassenavnet fra filen
+            Class veh1 = Class.forName(vehClass);           // oppretter Class objekt for angitt klassenavn (String)
+            Vehicle veh = (Vehicle) veh1.newInstance();      // oppretter ny instans av Vehicle
+        } catch (FileNotFoundException e) {
+            System.out.println("File ");
+            System.exit(3);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+            System.exit(4);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            System.exit(5);
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+            System.exit(6);
+        }*/
     }
 
 
