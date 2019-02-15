@@ -1,20 +1,17 @@
-import java.util.Calendar;
 import java.util.Scanner;
 
-public abstract class Vehicle implements Cloneable, Comparable<Vehicle> {
+public abstract class Vehicle {
     private String colour, name, serialNumber;
     private int model, price, direction;
     private double speed;
-    private Calendar buyingDate;
 
     protected Scanner input = new Scanner(System.in);
 
     public Vehicle() {
-        setBuyingDate(Calendar.getInstance());
+
     }
 
     public Vehicle(String name, String colour, int price, int model, String serialNumber, int direction) {
-        this();
         setName(name);
         setColour(colour);
         setPrice(price);
@@ -94,29 +91,6 @@ public abstract class Vehicle implements Cloneable, Comparable<Vehicle> {
 
     public void setSpeed(double speed) {
         this.speed = speed;
-    }
-
-    public Calendar getBuyingDate() {
-        return buyingDate;
-    }
-
-    public void setBuyingDate(Calendar buyingDate) {
-        this.buyingDate = buyingDate;
-    }
-
-    public int compareTo(Vehicle other) {
-        if(this.getPrice() > other.getPrice()) {
-            return 1;
-        } else if(this.getPrice() < other.getPrice()) {
-            return -1;
-        } else {
-            return 0;
-        }
-    }
-
-    @Override
-    public Object clone() throws CloneNotSupportedException {
-        return super.clone();
     }
 
     @Override
