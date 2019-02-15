@@ -8,7 +8,7 @@ import java.io.*;
 
 public class VehicleTest {
   public static void main(String[] args) {
-	  VehicleTest vtest = new VehicleTest();
+    VehicleTest vtest = new VehicleTest();
     try {
       vtest.menuLoop();
     } catch(IOException e) {
@@ -16,7 +16,7 @@ public class VehicleTest {
       System.exit(1);
     } catch(CloneNotSupportedException e) {
       System.out.println("CloneNotSupportedException");
-      System.exit(1);
+      System.exit(2);
     }
   }
 
@@ -36,18 +36,19 @@ public class VehicleTest {
       System.out.println("3......................Find vehicle by name");
       System.out.println("4..............Show data about all vehicles");
       System.out.println("5.......Change direction of a given vehicle");
-      System.out.println("6..............................Exit program");
+      System.out.println("6.........................Test clone method");
+      System.out.println("7..............................Exit program");
       System.out.print(".............................Your choice? ");
       int choice = scan.nextInt();
       System.out.println();
 
       switch (choice) {
         case 1:
-        //legg til en ny bil
-        vehicle = new Car();
-        vehicle.setAllFields();
-        arr.add(vehicle);
-        break;
+          //legg til en ny bil
+          vehicle = new Car();
+          vehicle.setAllFields();
+          arr.add(vehicle);
+          break;
 
         case 2:
         //legg til en ny sykkel
@@ -55,13 +56,15 @@ public class VehicleTest {
         vehicle.setAllFields();
         arr.add(vehicle);
         System.out.println();
+
           break;
 
         case 3:
-        //vis info om gitt kjøretøy
-        System.out.print("Name of vehicle: ");
+          //vis info om gitt kjøretøy
+          System.out.print("Name of vehicle: ");
           scan.nextLine(); // flush scanner
           String search =  scan.nextLine();
+
           for(Vehicle loop : arr) {
             if(loop.getName().toLowerCase().contains(search.toLowerCase())) {
               System.out.println(loop);
@@ -100,12 +103,32 @@ public class VehicleTest {
         System.out.println();
         break;
 
-      case 6:
-      	scan.close();
-        System.exit(0);
+        case 6:
+          //clone and change date
+          Vehicle testCar = new Car("Test car", "Blue", 52000, 2011, "123-456", 0, 200);
+          Vehicle clonedCar = (Vehicle)testCar.clone();
+          clonedCar.setBuyingDate((Calendar)testCar.getBuyingDate().clone());
 
-      default:
-        System.out.println("Wrong input!");
+          Calendar newDate = Calendar.getInstance();
+          newDate.set(1990,3,22);
+          testCar.setBuyingDate(newDate);
+
+          if(testCar.getBuyingDate() != clonedCar.getBuyingDate()) {
+            System.out.println("Date objects are separate, deep copy successful.");
+          } else {
+            System.out.println("Date objects are not separate. Deep copy may have failed.");
+          }
+
+          System.out.printf("%tF\n", testCar.getBuyingDate());
+          System.out.printf("%tF\n", clonedCar.getBuyingDate());
+          break;
+
+        case 7:
+          scan.close();
+          System.exit(0);
+
+        default:
+          System.out.println("Wrong input!");
       }
     }
   }
