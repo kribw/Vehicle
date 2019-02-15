@@ -1,7 +1,12 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Calendar;
+import java.util.Locale;
 import java.util.Scanner;
 
-public abstract class Vehicle implements Cloneable, Driveable, Comparable<Vehicle> {
+public abstract class Vehicle implements Cloneable, Driveable, Fileable, Comparable<Vehicle> {
     private String colour, name, serialNumber;
     private int model, price, direction;
     private double speed;
@@ -9,6 +14,8 @@ public abstract class Vehicle implements Cloneable, Driveable, Comparable<Vehicl
     //final double MAX_SPEED_CAR = ;
 
     protected Scanner input = new Scanner(System.in);
+
+    File file = new File("vehicles.txt");
 
     public Vehicle() {
         setBuyingDate(Calendar.getInstance());
@@ -119,6 +126,20 @@ public abstract class Vehicle implements Cloneable, Driveable, Comparable<Vehicl
             return 0;
         }
     }
+
+    public void writeData(PrintWriter out) throws IOException {
+        // .useLocale(Locale.US)
+        Scanner in = new Scanner(file);
+        in.useDelimiter(",");
+        String vehClass = in.next();                    // leser klassenavnet fra filen
+        //Class veh1 = Class.forName(vehClass);           // oppretter Class objekt for angitt klassenavn (String)
+        //Vehicle veh = (Vehicle)veh1.newInstance();      // oppretter ny instans av Vehicle
+    }
+
+    public void readData(Scanner in) throws IOException{
+
+    }
+
 
     @Override
     public Object clone() throws CloneNotSupportedException {
