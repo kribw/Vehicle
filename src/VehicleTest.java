@@ -52,10 +52,12 @@ public class VehicleTest {
           break;
 
         case 2:
-          //legg til en ny sykkel
-          vehicle = new Bicycle();
-          vehicle.setAllFields();
-          arr.add(vehicle);
+        //legg til en ny sykkel
+        vehicle = new Bicycle();
+        vehicle.setAllFields();
+        arr.add(vehicle);
+        System.out.println();
+
           break;
 
         case 3:
@@ -69,36 +71,38 @@ public class VehicleTest {
               System.out.println(loop);
             }
           }
-          break;
-
-        case 4:
-          //vis info om alle kjøretøy
-          for(Vehicle loop : arr) {
-            System.out.println(loop);
-          }
           System.out.println();
           break;
 
-        case 5:
-          // Finn kjøretøy med gitt navn, sett ny retning
-          System.out.print("Name of vehicle: ");
-          scan.nextLine(); // flush scanner
-          String search2 =  scan.nextLine();
+      case 4:
+        //vis info om alle kjøretøy
+        for(Vehicle loop : arr) {
+          System.out.println(loop);
+        }
+        System.out.println();
+        break;
 
-          for(Vehicle loop : arr) {
-            if(loop.getName().toLowerCase().contains(search2.toLowerCase())) {
-              System.out.print("Direction [R/L]: ");
-              String direction = scan.next();
-              System.out.print("Degrees [0-360]: ");
-              int degrees = scan.nextInt();
-              if(direction.toLowerCase().equals("r")){
-                loop.turnRight(degrees);
-              } else if(direction.toLowerCase().equals("l")) {
-                loop.turnLeft(degrees);
-              }
+      case 5:
+        // Finn kjøretøy med gitt navn, sett ny retning
+        System.out.print("Name of vehicle: ");
+        scan.nextLine(); // flush scanner
+        String search2 =  scan.nextLine();
+
+        for(Vehicle loop : arr) {
+          if(loop.getName().toLowerCase().contains(search2.toLowerCase())) {
+            System.out.print("Direction [R/L]: ");
+            String direction = scan.next();
+            System.out.print("Degrees [0-360]: ");
+            int degrees = scan.nextInt();
+            if(direction.toLowerCase().equals("r")){
+              loop.turnRight(degrees);
+            } else if(direction.toLowerCase().equals("l")) {
+              loop.turnLeft(degrees);
             }
           }
-          break;
+        }
+        System.out.println();
+        break;
 
         case 6:
           //clone and change date
@@ -118,6 +122,7 @@ public class VehicleTest {
 
           System.out.printf("%tF\n", testCar.getBuyingDate());
           System.out.printf("%tF\n", clonedCar.getBuyingDate());
+          System.out.println();
           break;
 
         case 7:
@@ -128,7 +133,6 @@ public class VehicleTest {
           incredibleCar.accelerate(300);
           incredibleCar.breaks(40);
           incredibleCar.stop();
-
           System.out.println();
 
           Vehicle amazingBike = new Bicycle("Mega-fast-and-nutty bike", "All kinds", 500, 3, "W-T-F", 10, 0);
@@ -137,6 +141,7 @@ public class VehicleTest {
           amazingBike.accelerate(140);
           amazingBike.breaks(40);
           amazingBike.stop();
+          System.out.println();
           break;
 
         case 8:
