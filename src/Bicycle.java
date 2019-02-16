@@ -1,4 +1,7 @@
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Bicycle extends Vehicle {
@@ -6,18 +9,15 @@ public class Bicycle extends Vehicle {
     private Calendar productionDate;
 
     public Bicycle() {
+        super();
         setProductionDate(Calendar.getInstance());
     }
 
     public Bicycle(String name, String colour, int price, int model, String serialNumber, int gears, double speed) {
-        this();
-        setName(name);
-        setColour(colour);
-        setPrice(price);
-        setModel(model);
-        setSerialNumber(serialNumber);
+        super(name, colour, price, model, serialNumber, 0);
         setGears(gears);
         setSpeed(speed);
+        setProductionDate(Calendar.getInstance());
     }
 
     @Override
@@ -34,6 +34,15 @@ public class Bicycle extends Vehicle {
         super.readData(in);
         String gear = in.next();
         setGears(Integer.parseInt(gear.substring(gear.lastIndexOf(":") + 2)));
+        String productionDate = in.next();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+        try {
+            Date date = sdf.parse(productionDate.substring(productionDate.lastIndexOf(":") + 2));
+            getProductionDate().setTime(date);
+        }
+        catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     public void turnRight(int degrees) {

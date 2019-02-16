@@ -1,8 +1,8 @@
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Calendar;
-import java.util.Locale;
-import java.util.Scanner;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public abstract class Vehicle implements Cloneable, Driveable, Fileable, Comparable<Vehicle> {
 
@@ -11,7 +11,7 @@ public abstract class Vehicle implements Cloneable, Driveable, Fileable, Compara
     private double speed;
     private Calendar buyingDate;
 
-    protected Scanner input = new Scanner(System.in).useLocale(Locale.US);
+    protected Scanner input = new Scanner(System.in);
 
     public Vehicle() {
         setBuyingDate(Calendar.getInstance());
@@ -148,8 +148,16 @@ public abstract class Vehicle implements Cloneable, Driveable, Fileable, Compara
         setDirection(Integer.parseInt(direction.substring(direction.lastIndexOf(":") + 2)));
         String speed = in.next();
         setSpeed(Double.valueOf(speed.substring(speed.lastIndexOf(":") + 2)));
+        String buyingDate = in.next();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+        try {
+            Date date = sdf.parse(buyingDate.substring(buyingDate.lastIndexOf(":") + 2));
+            getBuyingDate().setTime(date);
+        }
+        catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
-
 
     @Override
     public Object clone() throws CloneNotSupportedException {
@@ -159,6 +167,6 @@ public abstract class Vehicle implements Cloneable, Driveable, Fileable, Compara
     @Override
     public String toString() {
         // Name, Colour, Serial Number, Model, Price, Direction, Speed
-        return String.format("Name: %s, Colour: %s, Serial#: %s, Model: %d, Price: %d, Direction: %d, Speed: %.2f", getName(), getColour(), getSerialNumber(), getModel(), getPrice(), getDirection(), getSpeed());
+        return String.format("Name: %s, Colour: %s, Serial#: %s, Model: %d, Price: %d, Direction: %d, Speed: %.2f, Buying date: %tF", getName(), getColour(), getSerialNumber(), getModel(), getPrice(), getDirection(), getSpeed(), getBuyingDate());
     }
 }

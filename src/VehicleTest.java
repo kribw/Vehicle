@@ -3,14 +3,8 @@
  * Lar bruker manipulere data i arrayet på forskjellige måter
  */
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Locale;
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
 public class VehicleTest {
 
@@ -31,32 +25,29 @@ public class VehicleTest {
     }
 
     private void menuLoop() throws IOException, CloneNotSupportedException {
-        Scanner scan = new Scanner(System.in).useLocale(Locale.US);
+        Scanner scan = new Scanner(System.in);
 
         ArrayList<Vehicle> arr = new ArrayList<Vehicle>();
 
         File file = new File("vehicles.txt");
         if (file.exists()) {
-            Scanner in = new Scanner(file).useLocale(Locale.US);
+            Scanner in = new Scanner(file);
             in.useDelimiter(", ");
             try {
                 while (in.hasNextLine()) {
                     String className = in.next();
-                    Class veh1 = Class.forName(className);
+                    Class veh1 = Class.forName(className.trim());
                     Vehicle vehicle = (Vehicle) veh1.newInstance();
                     vehicle.readData(in);
                     arr.add(vehicle);
                     System.out.println("Vehicle read from file: " + vehicle.toString());
-                    if (in.hasNextLine()) {
-                        in.nextLine();
-                    }
+
                 }
             }
             catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
                 e.printStackTrace();
             }
-        }
-        else {
+        } else {
             arr.add(new Car("Volvo", "Black", 85000, 2010, "1010-11", 163, 0));
             arr.add(new Bicycle("Diamant", "yellow", 4000, 1993, "BC100", 10, 0));
             arr.add(new Car("Ferrari Testarossa", "red", 1200000, 1996, "A112", 350, 0));
@@ -185,9 +176,11 @@ public class VehicleTest {
                     scan.close();
                     try {
                         PrintWriter printWriter = new PrintWriter(file);
-                        for (Vehicle vehicloop : arr) {
-                            vehicloop.writeData(printWriter);
-                            printWriter.write("\n");
+                        for (int i = 0; i < arr.size(); i++) {
+                            arr.get(i).writeData(printWriter);
+                            if (i + 1 < arr.size()) {
+                                printWriter.println(", ");
+                            }
                         }
                         printWriter.close();
                     }
