@@ -16,7 +16,7 @@ public class VehicleTest {
       System.exit(1);
     } catch(CloneNotSupportedException e) {
       System.out.println("CloneNotSupportedException");
-      System.exit(2);
+      System.exit(1);
     }
   }
 
@@ -36,8 +36,7 @@ public class VehicleTest {
       System.out.println("3......................Find vehicle by name");
       System.out.println("4..............Show data about all vehicles");
       System.out.println("5.......Change direction of a given vehicle");
-      System.out.println("6.........................Test clone method");
-      System.out.println("7..............................Exit program");
+      System.out.println("6..............................Exit program");
       System.out.print(".............................Your choice? ");
       int choice = scan.nextInt();
       System.out.println();
@@ -51,12 +50,11 @@ public class VehicleTest {
           break;
 
         case 2:
-        //legg til en ny sykkel
-        vehicle = new Bicycle();
-        vehicle.setAllFields();
-        arr.add(vehicle);
-        System.out.println();
-
+          //legg til en ny sykkel
+          vehicle = new Bicycle();
+          vehicle.setAllFields();
+          arr.add(vehicle);
+          System.out.println();
           break;
 
         case 3:
@@ -64,7 +62,6 @@ public class VehicleTest {
           System.out.print("Name of vehicle: ");
           scan.nextLine(); // flush scanner
           String search =  scan.nextLine();
-
           for(Vehicle loop : arr) {
             if(loop.getName().toLowerCase().contains(search.toLowerCase())) {
               System.out.println(loop);
@@ -73,57 +70,37 @@ public class VehicleTest {
           System.out.println();
           break;
 
-      case 4:
-        //vis info om alle kjøretøy
-        for(Vehicle loop : arr) {
-          System.out.println(loop);
-        }
-        System.out.println();
-        break;
-
-      case 5:
-        // Finn kjøretøy med gitt navn, sett ny retning
-        System.out.print("Name of vehicle: ");
-        scan.nextLine(); // flush scanner
-        String search2 =  scan.nextLine();
-
-        for(Vehicle loop : arr) {
-          if(loop.getName().toLowerCase().contains(search2.toLowerCase())) {
-            System.out.print("Direction [R/L]: ");
-            String direction = scan.next();
-            System.out.print("Degrees [0-360]: ");
-            int degrees = scan.nextInt();
-            if(direction.toLowerCase().equals("r")){
-              loop.turnRight(degrees);
-            } else if(direction.toLowerCase().equals("l")) {
-              loop.turnLeft(degrees);
-            }
+        case 4:
+          //vis info om alle kjøretøy
+          for(Vehicle loop : arr) {
+            System.out.println(loop);
           }
-        }
-        System.out.println();
-        break;
-
-        case 6:
-          //clone and change date
-          Vehicle testCar = new Car("Test car", "Blue", 52000, 2011, "123-456", 0, 200);
-          Vehicle clonedCar = (Vehicle)testCar.clone();
-          clonedCar.setBuyingDate((Calendar)testCar.getBuyingDate().clone());
-
-          Calendar newDate = Calendar.getInstance();
-          newDate.set(1990,3,22);
-          testCar.setBuyingDate(newDate);
-
-          if(testCar.getBuyingDate() != clonedCar.getBuyingDate()) {
-            System.out.println("Date objects are separate, deep copy successful.");
-          } else {
-            System.out.println("Date objects are not separate. Deep copy may have failed.");
-          }
-
-          System.out.printf("%tF\n", testCar.getBuyingDate());
-          System.out.printf("%tF\n", clonedCar.getBuyingDate());
+          System.out.println();
           break;
 
-        case 7:
+        case 5:
+          // Finn kjøretøy med gitt navn, sett ny retning
+          System.out.print("Name of vehicle: ");
+          scan.nextLine(); // flush scanner
+          String search2 =  scan.nextLine();
+
+          for(Vehicle loop : arr) {
+            if(loop.getName().toLowerCase().contains(search2.toLowerCase())) {
+              System.out.print("Direction [R/L]: ");
+              String direction = scan.next();
+              System.out.print("Degrees [0-360]: ");
+              int degrees = scan.nextInt();
+              if(direction.toLowerCase().equals("r")){
+                loop.turnRight(degrees);
+              } else if(direction.toLowerCase().equals("l")) {
+                loop.turnLeft(degrees);
+              }
+            }
+          }
+          System.out.println();
+          break;
+
+        case 6:
           scan.close();
           System.exit(0);
 
