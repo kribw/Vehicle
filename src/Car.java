@@ -1,40 +1,46 @@
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Scanner;
 
 public class Car extends Vehicle {
     private int power;
     private Calendar productionDate;
 
     public Car() {
+        super();
         setProductionDate(Calendar.getInstance());
     }
 
     public Car(String name, String colour, int price, int model, String serialNumber, int direction, int power) {
-        this();
-        setName(name);
-        setColour(colour);
-        setPrice(price);
-        setModel(model);
-        setSerialNumber(serialNumber);
-        setDirection(direction);
+        super(name, colour, price, model, serialNumber, direction);
+        setProductionDate(Calendar.getInstance());
         setPower(power);
     }
 
     @Override
     public void setAllFields() {
         // Name, colour, price, model, serialnumber, power
-        System.out.print("Name: ");
-        setName(input.nextLine());
-        System.out.print("Colour: ");
-        setColour(input.nextLine());
-        System.out.print("Price: ");
-        setPrice(input.nextInt());
-        System.out.print("Model: ");
-        setModel(input.nextInt());
-        input.nextLine(); // "flushes" line before nextline
-        System.out.print("Serial#: ");
-        setSerialNumber(input.nextLine());
+        super.setAllFields();
         System.out.print("Power: ");
         setPower(input.nextInt());
+    }
+
+    @Override
+    public void readData(Scanner in) {
+        super.readData(in);
+        String power = in.next();
+        setPower(Integer.parseInt(power.substring(power.lastIndexOf(":") + 2)));
+        String productionDate = in.next();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+        try {
+            Date date = sdf.parse(productionDate.substring(productionDate.lastIndexOf(":") + 2));
+            getProductionDate().setTime(date);
+        }
+        catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     public void turnRight(int degrees) {
@@ -94,8 +100,6 @@ public class Car extends Vehicle {
     @Override
     public String toString() {
         // Name, Colour, Serial Number, Model, Price, Direction, Speed, Power, Production date
-        //return String.format("Name: %s, Colour: %s, Serial#: %s, Model: %d, Price: %d, Direction: %d, Speed: %.2f, Power: %d, Production date: %tF", getName(), getColour(), getSerialNumber(), getModel(),getPrice(), getDirection(), getSpeed(), getPower(), getProductionDate());
         return String.format("%s, Power: %d, Production date: %tF", super.toString(), getPower(), getProductionDate());
-
     }
 }
