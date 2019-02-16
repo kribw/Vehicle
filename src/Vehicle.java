@@ -1,4 +1,3 @@
-import java.util.Calendar;
 import java.util.Scanner;
 
 public abstract class Vehicle implements Cloneable, Driveable, Comparable<Vehicle> {
@@ -6,16 +5,14 @@ public abstract class Vehicle implements Cloneable, Driveable, Comparable<Vehicl
     private int model, price, direction;
     private double speed;
     private Calendar buyingDate;
-    //final double MAX_SPEED_CAR = ;
 
     protected Scanner input = new Scanner(System.in);
 
     public Vehicle() {
-        setBuyingDate(Calendar.getInstance());
+
     }
 
     public Vehicle(String name, String colour, int price, int model, String serialNumber, int direction) {
-        this();
         setName(name);
         setColour(colour);
         setPrice(price);
