@@ -15,13 +15,12 @@ public class Car extends Vehicle {
 
     public Car(String name, String colour, int price, int model, String serialNumber, int direction, int power) {
         super(name, colour, price, model, serialNumber, direction);
-        setProductionDate(Calendar.getInstance());
         setPower(power);
+        setProductionDate(Calendar.getInstance());
     }
 
     @Override
     public void setAllFields() {
-        // Name, colour, price, model, serialnumber, power
         super.setAllFields();
         System.out.print("Power: ");
         setPower(input.nextInt());

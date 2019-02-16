@@ -14,11 +14,10 @@ public abstract class Vehicle implements Cloneable, Driveable, Fileable, Compara
     protected Scanner input = new Scanner(System.in);
 
     public Vehicle() {
-        setBuyingDate(Calendar.getInstance());
+
     }
 
     public Vehicle(String name, String colour, int price, int model, String serialNumber, int direction) {
-        this();
         setName(name);
         setColour(colour);
         setPrice(price);
