@@ -1,6 +1,11 @@
-import java.util.Scanner;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
-public abstract class Vehicle implements Cloneable, Driveable, Comparable<Vehicle> {
+public abstract class Vehicle implements Cloneable, Driveable, Fileable, Comparable<Vehicle> {
+
     private String colour, name, serialNumber;
     private int model, price, direction;
     private double speed;
@@ -36,6 +41,7 @@ public abstract class Vehicle implements Cloneable, Driveable, Comparable<Vehicl
     }
 
     public abstract void turnLeft(int degrees);
+
     public abstract void turnRight(int degrees);
 
     public String getColour() {
@@ -108,12 +114,47 @@ public abstract class Vehicle implements Cloneable, Driveable, Comparable<Vehicl
     }
 
     public int compareTo(Vehicle other) {
-        if(this.getPrice() > other.getPrice()) {
+        if (this.getPrice() > other.getPrice()) {
             return 1;
-        } else if(this.getPrice() < other.getPrice()) {
+        }
+        else if (this.getPrice() < other.getPrice()) {
             return -1;
-        } else {
+        }
+        else {
             return 0;
+        }
+    }
+
+    public void writeData(PrintWriter out) throws IOException {
+        out.write(getClass().getName());
+        out.write(", ");
+        out.write(toString());
+        System.out.println("Vehicle written to file: " + toString());
+    }
+
+    public void readData(Scanner in) {
+        String name = in.next();
+        setName(name.substring(name.lastIndexOf(":") + 2));
+        String colour = in.next();
+        setColour(colour.substring(colour.lastIndexOf(":") + 2));
+        String serial = in.next();
+        setSerialNumber(serial.substring(serial.lastIndexOf(":") + 2));
+        String model = in.next();
+        setModel(Integer.parseInt(model.substring(model.lastIndexOf(":") + 2)));
+        String price = in.next();
+        setPrice(Integer.parseInt(price.substring(price.lastIndexOf(":") + 2)));
+        String direction = in.next();
+        setDirection(Integer.parseInt(direction.substring(direction.lastIndexOf(":") + 2)));
+        String speed = in.next();
+        setSpeed(Double.valueOf(speed.substring(speed.lastIndexOf(":") + 2)));
+        String buyingDate = in.next();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+        try {
+            Date date = sdf.parse(buyingDate.substring(buyingDate.lastIndexOf(":") + 2));
+            getBuyingDate().setTime(date);
+        }
+        catch (ParseException e) {
+            e.printStackTrace();
         }
     }
 
@@ -125,6 +166,6 @@ public abstract class Vehicle implements Cloneable, Driveable, Comparable<Vehicl
     @Override
     public String toString() {
         // Name, Colour, Serial Number, Model, Price, Direction, Speed
-        return String.format("Name: %s, Colour: %s, Serial#: %s, Model: %d, Price: %d, Direction: %d, Speed: %.2f", getName(), getColour(), getSerialNumber(), getModel(),getPrice(), getDirection(), getSpeed());
+        return String.format("Name: %s, Colour: %s, Serial#: %s, Model: %d, Price: %d, Direction: %d, Speed: %.2f, Buying date: %tF", getName(), getColour(), getSerialNumber(), getModel(), getPrice(), getDirection(), getSpeed(), getBuyingDate());
     }
 }

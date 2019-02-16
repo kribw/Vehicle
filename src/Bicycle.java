@@ -1,10 +1,15 @@
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Scanner;
 
 public class Bicycle extends Vehicle {
     private int gears;
     private Calendar productionDate;
 
     public Bicycle() {
+        super();
         setProductionDate(Calendar.getInstance());
     }
 
@@ -22,6 +27,22 @@ public class Bicycle extends Vehicle {
         setGears(input.nextInt());
         System.out.print("Speed: ");
         setSpeed(input.nextDouble());
+    }
+
+    @Override
+    public void readData(Scanner in) {
+        super.readData(in);
+        String gear = in.next();
+        setGears(Integer.parseInt(gear.substring(gear.lastIndexOf(":") + 2)));
+        String productionDate = in.next();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+        try {
+            Date date = sdf.parse(productionDate.substring(productionDate.lastIndexOf(":") + 2));
+            getProductionDate().setTime(date);
+        }
+        catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     public void turnRight(int degrees) {

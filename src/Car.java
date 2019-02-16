@@ -1,10 +1,15 @@
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Scanner;
 
 public class Car extends Vehicle {
     private int power;
     private Calendar productionDate;
 
     public Car() {
+        super();
         setProductionDate(Calendar.getInstance());
     }
 
@@ -19,6 +24,22 @@ public class Car extends Vehicle {
         super.setAllFields();
         System.out.print("Power: ");
         setPower(input.nextInt());
+    }
+
+    @Override
+    public void readData(Scanner in) {
+        super.readData(in);
+        String power = in.next();
+        setPower(Integer.parseInt(power.substring(power.lastIndexOf(":") + 2)));
+        String productionDate = in.next();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+        try {
+            Date date = sdf.parse(productionDate.substring(productionDate.lastIndexOf(":") + 2));
+            getProductionDate().setTime(date);
+        }
+        catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     public void turnRight(int degrees) {
@@ -79,6 +100,5 @@ public class Car extends Vehicle {
     public String toString() {
         // Name, Colour, Serial Number, Model, Price, Direction, Speed, Power, Production date
         return String.format("%s, Power: %d, Production date: %tF", super.toString(), getPower(), getProductionDate());
-
     }
 }
