@@ -53,6 +53,28 @@ public class Car extends Vehicle {
         this.productionDate = date;
     }
 
+    public void accelerate(int speedFactor) {
+        double tempspeed = 0;
+
+        if(getSpeed() == 0) {
+            tempspeed = (speedFactor * 0.5);
+        } else {
+            tempspeed = (speedFactor * getSpeed());
+        }
+
+        if(tempspeed > MAX_SPEED_CAR) {
+            setSpeed(MAX_SPEED_CAR);
+        } else {
+            setSpeed(tempspeed);
+        }
+        System.out.println("Vehicle accelerated to: " + getSpeed() + " km/h.");
+    }
+
+    public void breaks(int speedFactor) {
+        setSpeed(getSpeed() / speedFactor);
+        System.out.println("Vehicle slowed down to: " + getSpeed() + " km/h.");
+    }
+
     @Override
     public String toString() {
         // Name, Colour, Serial Number, Model, Price, Direction, Speed, Power, Production date
